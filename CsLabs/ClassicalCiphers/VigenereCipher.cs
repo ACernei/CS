@@ -1,7 +1,7 @@
 using CsLabs;
 using CsLabs.Extensions;
 
-namespace Lab1;
+namespace ClassicalCiphers;
 
 public class VigenereCipher : ICipher
 {
@@ -11,7 +11,7 @@ public class VigenereCipher : ICipher
     {
         this.keyword = keyword;
     }
-    
+
     public string Encrypt(string message)
     {
         return ProcessMessage(message, (a, b) => a + b);

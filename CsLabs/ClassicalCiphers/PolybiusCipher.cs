@@ -1,7 +1,7 @@
 using CsLabs;
 using CsLabs.Extensions;
 
-namespace Lab1;
+namespace ClassicalCiphers;
 
 public class PolybiusCipher : ICipher
 {
