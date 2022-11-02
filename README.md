@@ -12,8 +12,11 @@
 
 ## Implementations
 
-* [Laboratory Work 1](./CsLabs/Lab1/)
+* [Classical ciphers](./CsLabs/ClassicalCiphers/)
+* [Symmetric ciphers](./CsLabs/SymmetricCiphers/)
+
 
 ## Reports
 
-* [Laboratory Work 1](./reports/Lab1.md)
+* [Classical ciphers](./reports/ClassicalCiphers.md)
+* [Symmetric ciphers](./reports/SymmetricCiphers.md)

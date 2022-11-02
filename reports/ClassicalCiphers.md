@@ -1,7 +1,7 @@
 # Classical ciphers
 
 ### Course: Cryptography & Security
-### Author: Cernei Ion
+### Author: Cernei Andrei
 
 ----
 ## Objectives:
@@ -71,7 +71,7 @@ encryptedTextIndex = (messageIndex - keywordIndex) mod alphabetLength
 
 I tested each cypher and obtained the following result:
 
-![testsResult](./resources/Lab1TestsResult.png)
+![testsResult](./resources/ClassicalCiphersTestsResult.png)
 
 ## Conclusion
 
