@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\AsymmetricCiphers\AsymmetricCiphers.csproj" />
       <ProjectReference Include="..\ClassicalCiphers\ClassicalCiphers.csproj" />
       <ProjectReference Include="..\SymmetricCiphers\SymmetricCiphers.csproj" />
     </ItemGroup>
