@@ -1,10 +1,9 @@
-using CsLabs;
 using CsLabs.Extensions;
 using static SymmetricCiphers.DesCipher.DesConstants;
 
 namespace SymmetricCiphers.DesCipher
 {
-    public class DesCipher : ICipher
+    public class DesCipher
     {
         private readonly string key;
 
@@ -105,7 +104,7 @@ namespace SymmetricCiphers.DesCipher
             input = Permute(Ip, input);
 
             //  16 rounds
-            for (var i = 0; i < 16; i++)    
+            for (var i = 0; i < 16; i++)
             {
                 input = Round(input, keys[i]);
             }

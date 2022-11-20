@@ -1,6 +1,6 @@
 using CsLabs.Extensions;
 
-namespace CsLabs;
+namespace ClassicalCiphers;
 
 public static class Alphabet
 {
@@ -11,7 +11,7 @@ public static class Alphabet
     {
         if (string.IsNullOrWhiteSpace(keyword))
             return alphabet;
-        
+
         var keywordLetters = keyword
             .ToLower()
             .Where(alphabet.Contains)

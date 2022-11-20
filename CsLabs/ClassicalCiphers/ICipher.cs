@@ -1,4 +1,4 @@
-namespace CsLabs;
+namespace ClassicalCiphers;
 
 public interface ICipher
 {
