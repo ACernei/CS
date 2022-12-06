@@ -5,9 +5,9 @@ public class UserManagementService
     private readonly Dictionary<string, string> database;
     private readonly Hash hash;
 
-    public UserManagementService(Dictionary<string, string> database)
+    public UserManagementService()
     {
-        this.database = database;
+        this.database = new Dictionary<string, string>();
         this.hash = new Hash();
     }
 

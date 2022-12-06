@@ -10,9 +10,7 @@ public class UserServiceTests
     [Test]
     public void ValidateCreateUserShouldReturnTrue()
     {
-        var database = new Dictionary<string, string>();
-
-        var userManager = new UserManagementService(database);
+        var userManager = new UserManagementService();
         userManager.CreateUser("andrei", "admin");
 
         userManager.IsValid("andrei", "admin").Should().Be(true);

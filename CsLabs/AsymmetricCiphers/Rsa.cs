@@ -53,4 +53,30 @@ public class Rsa
 
         return string.Join("", decryptedMessage);
     }
+
+    public List<BigInteger> SignEncrypt(string message)
+    {
+        var encryptedMessage = new List<BigInteger>();
+        foreach (var letter in message)
+        {
+            var asciiValue = (int)letter;
+            var encryptedLetter = BigInteger.Pow(asciiValue, (int)this.privateKey) % this.n;
+            encryptedMessage.Add(encryptedLetter);
+        }
+
+        return encryptedMessage;
+    }
+
+    public string SignDecrypt(List<BigInteger> encryptedMessage)
+    {
+        var decryptedMessage = new List<char>();
+        foreach (var encryptedLetter in encryptedMessage)
+        {
+            var asciiValue = BigInteger.Pow(encryptedLetter, (int)this.publicKey) % this.n;
+            var decryptedLetter = (char)asciiValue;
+            decryptedMessage.Add(decryptedLetter);
+        }
+
+        return string.Join("", decryptedMessage);
+    }
 }

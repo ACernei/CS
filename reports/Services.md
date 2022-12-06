@@ -31,20 +31,46 @@ return false;
 ```
 
 * ### Digital signature serivce.
+
+It is important to mention that for encryption we use the private key and for decryption the public one. For this, two additional functions were added to the asymetrical cypher implemeted before.
+```
+var encryptedMessage = new List<BigInteger>();
+foreach (var letter in message)
+{
+    var asciiValue = (int)letter;
+    var encryptedLetter = BigInteger.Pow(asciiValue, (int)this.privateKey) % this.n;
+    encryptedMessage.Add(encryptedLetter);
+}
+
+return encryptedMessage;
+```
+```
+var decryptedMessage = new List<char>();
+foreach (var encryptedLetter in encryptedMessage)
+{
+    var asciiValue = BigInteger.Pow(encryptedLetter, (int)this.publicKey) % this.n;
+    var decryptedLetter = (char)asciiValue;
+    decryptedMessage.Add(decryptedLetter);
+}
+
+return string.Join("", decryptedMessage);
+```
+
 For the implementation of the user management service, two functions were needed.
 
 Frist, sign the message. This function creates a signature which is the hash of the message. Finally, it encrypts both the message and the signature with the [RSA cypher algorithm](../CsLabs/AsymmetricCiphers/Rsa.cs).
 ```
 var signature = hash.CreateHash(message);
-var encryptedSignature = rsa.Encrypt(signature);
-var encryptedMessage = rsa.Encrypt(message);
+var encryptedSignature = rsa.SignEncrypt(signature);
+var encryptedMessage = rsa.SignEncrypt(message);
 
 return (encryptedMessage, encryptedSignature);
 ```
+
 The second step is message validation. This function decrypts encrypted message and signature. Them it checks if the recieved signature is the same as the hash of the recieved message.
 ```
-var receivedMessage = rsa.Decrypt(encryptedMessage);
-var receivedSignature = rsa.Decrypt(encryptedSignature);
+var receivedMessage = rsa.SignDecrypt(encryptedMessage);
+var receivedSignature = rsa.SignDecrypt(encryptedSignature);
 
 return receivedSignature == hash.CreateHash(receivedMessage);
 ```
@@ -57,14 +83,11 @@ The first one tests the user validation fnction.
 
 
 ```
-var database = new Dictionary<string, string>();
-
-var userManager = new UserManagementService(database);
+var userManager = new UserManagementService();
 userManager.CreateUser("andrei", "admin");
 
 userManager.IsValid("andrei", "admin").Should().Be(true);
 ```
-
 
 The second one tests the digital signature validation function.
 
@@ -86,4 +109,3 @@ In this laboratory work I got familiar with the hashing techniques, algorithms.
 For code improvement were used OOP and SOLID principles.    
 
 For proof to show that it works were implemented several unit tests.
-
