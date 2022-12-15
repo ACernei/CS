@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/csharp,dotnetcore,aspnetcore,rider
-# Edit at https://www.toptal.com/developers/gitignore?templates=csharp,dotnetcore,aspnetcore,rider
+# Created by https://www.toptal.com/developers/gitignore/api/rider,csharp,dotnetcore,aspnetcore
+# Edit at https://www.toptal.com/developers/gitignore?templates=rider,csharp,dotnetcore,aspnetcore
 
 ### ASPNETCore ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -221,6 +221,10 @@ UpgradeLog*.htm
 # SQL Server files
 *.mdf
 *.ldf
+
+*.db
+*.db-shm
+*.db-wal
 
 # Business Intelligence projects
 *.rdl.data
@@ -611,4 +615,4 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-# End of https://www.toptal.com/developers/gitignore/api/csharp,dotnetcore,aspnetcore,rider
+# End of https://www.toptal.com/developers/gitignore/api/rider,csharp,dotnetcore,aspnetcore

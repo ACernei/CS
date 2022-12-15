@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsymmetricCiphers", "Asymme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{9D413BAD-DA2F-4854-B9C1-7BB8A73D9167}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsApp", "CsApp\CsApp.csproj", "{811A24F0-18DB-4C5E-A8EF-76F4A01DF92B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{9D413BAD-DA2F-4854-B9C1-7BB8A73D9167}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D413BAD-DA2F-4854-B9C1-7BB8A73D9167}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D413BAD-DA2F-4854-B9C1-7BB8A73D9167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{811A24F0-18DB-4C5E-A8EF-76F4A01DF92B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{811A24F0-18DB-4C5E-A8EF-76F4A01DF92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{811A24F0-18DB-4C5E-A8EF-76F4A01DF92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{811A24F0-18DB-4C5E-A8EF-76F4A01DF92B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
