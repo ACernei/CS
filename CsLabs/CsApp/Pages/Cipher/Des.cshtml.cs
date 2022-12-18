@@ -1,10 +1,12 @@
 using CsApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SymmetricCiphers.DesCipher;
 
 namespace CsApp.Pages.Cipher;
 
+[Authorize(Roles = RoleName.Symmetric)]
 public class Des : PageModel
 {
     [BindProperty] public DesModel DesModel { get; set; } = null!;

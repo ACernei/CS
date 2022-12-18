@@ -1,9 +1,23 @@
 ﻿@page
+@using CsApp.Models
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Select User roles</h1>
 </div>
+
+<form method="post">
+    <input type="checkbox" id="ClassicalCipher" asp-for="RolesModel!.ClassicalCipher" checked="@User.IsInRole(RoleName.Classic)"/>
+    <label for="ClassicalCipher"> Classical cipher</label>
+    <br/>
+    <input type="checkbox" id="SymmetricCipher" asp-for="RolesModel!.SymmetricCipher" checked="@User.IsInRole(RoleName.Symmetric)"/>
+    <label for="SymmetricCipher"> Symmetric cipher</label>
+    <br/>
+    <input type="checkbox" id="AsymmetricCipher" asp-for="RolesModel!.AsymmetricCipher" checked="@User.IsInRole(RoleName.Asymmetric)"/>
+    <label for="AsymmetricCipher"> Asymmetric cipher</label>
+    <br/>
+    <input type="submit" value="Submit" asp-page-handler="Submit"/>
+</form>

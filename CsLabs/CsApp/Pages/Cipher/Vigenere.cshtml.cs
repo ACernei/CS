@@ -1,10 +1,12 @@
 using ClassicalCiphers;
 using CsApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CsApp.Pages.Cipher;
 
+[Authorize(Roles = RoleName.Classic)]
 public class Vigenere : PageModel
 {
     [BindProperty] public VigenereModel VigenereModel { get; set; } = null!;

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CsApp.Pages.Cipher;
 
-[Authorize(Policy = "RequireAdministratorRole")]
+[Authorize(Roles = RoleName.Asymmetric)]
 public class Rsa : PageModel
 {
     [BindProperty] public RsaModel RsaModel { get; set; } = null!;

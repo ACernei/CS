@@ -1,10 +1,12 @@
 using ClassicalCiphers;
 using CsApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CsApp.Pages.Cipher;
 
+[Authorize(Roles = RoleName.Classic)]
 public class Caesar : PageModel
 {
     [BindProperty] public CaesarModel CaesarModel { get; set; } = null!;

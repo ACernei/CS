@@ -1,10 +1,12 @@
 using CsApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SymmetricCiphers.Rc4Cipher;
 
 namespace CsApp.Pages.Cipher;
 
+[Authorize(Roles = RoleName.Symmetric)]
 public class Rc4 : PageModel
 {
     [BindProperty] public Rc4Model Rc4Model { get; set; } = null!;
