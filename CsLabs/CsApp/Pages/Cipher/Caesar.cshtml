@@ -1,0 +1,22 @@
+@page
+@model CsApp.Pages.Cipher.Caesar
+
+@{
+    ViewData["Title"] = "Caesar Cipher";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    Key:
+    <input asp-for="CaesarModel!.Key"/>
+    <br/>
+    Message:
+    <input asp-for="CaesarModel!.Message"/>
+    <br/>
+    <input type="submit" value="Encrypt" asp-page-handler="Encrypt"/>
+    <input type="submit" value="Decrypt" asp-page-handler="Decrypt"/>
+</form>
+<p>
+    Result: @Model.Message
+</p>

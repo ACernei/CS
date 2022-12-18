@@ -1,0 +1,22 @@
+@page
+@model CsApp.Pages.Cipher.Vigenere
+
+@{
+    ViewData["Title"] = "Vigenere Cipher";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    Keyword:
+    <input asp-for="VigenereModel!.Keyword"/>
+    <br/>
+    Message:
+    <input asp-for="VigenereModel!.Message"/>
+    <br/>
+    <input type="submit" value="Encrypt" asp-page-handler="Encrypt"/>
+    <input type="submit" value="Decrypt" asp-page-handler="Decrypt"/>
+</form>
+<p>
+    Result: @Model.Message
+</p>

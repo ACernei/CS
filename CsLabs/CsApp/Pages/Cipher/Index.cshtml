@@ -1,0 +1,46 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Ciphers";
+}
+
+@* <h1>@ViewData["Title"]</h1> *@
+
+<div>
+    <h3>Classical Ciphers</h3>
+    <ul style="list-style: none; font-size:20px">
+        <li>
+            <a class="nav-link text-dark" asp-area="" asp-page="/Cipher/Caesar">Caesar Cipher</a>
+        </li>
+        <li>
+            <a class="nav-link text-dark" asp-area="" asp-page="/Cipher/CaesarWithKeyword">Caesar Cipher With Keyword</a>
+        </li>
+        <li>
+            <a class="nav-link text-dark" asp-area="" asp-page="/Cipher/Polybius">Polybius Cipher</a>
+        </li>
+        <li>
+            <a class="nav-link text-dark" asp-area="" asp-page="/Cipher/Vigenere">Vigenere Cipher</a>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <h3>Symmetric Ciphers</h3>
+    <ul style="list-style: none; font-size:20px">
+        <li>
+            <a class="nav-link text-dark" asp-area="" asp-page="/Cipher/Des">DES Cipher</a>
+        </li>
+        <li>
+            <a class="nav-link text-dark" asp-area="" asp-page="/Cipher/Rc4">RC4 Keyword</a>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <h3>Asymmetric Ciphers</h3>
+    <ul style="list-style: none; font-size:20px">
+        <li>
+            <a class="nav-link text-dark" asp-area="" asp-page="/Cipher/Rsa">RSA Cipher</a>
+        </li>
+    </ul>
+</div>

@@ -19,4 +19,10 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.11" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AsymmetricCiphers\AsymmetricCiphers.csproj" />
+      <ProjectReference Include="..\ClassicalCiphers\ClassicalCiphers.csproj" />
+      <ProjectReference Include="..\SymmetricCiphers\SymmetricCiphers.csproj" />
+    </ItemGroup>
+
 </Project>
