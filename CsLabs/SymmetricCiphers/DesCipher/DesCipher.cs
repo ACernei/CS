@@ -1,3 +1,4 @@
+using System.Text;
 using CsLabs.Extensions;
 using static SymmetricCiphers.DesCipher.DesConstants;
 
@@ -9,7 +10,16 @@ namespace SymmetricCiphers.DesCipher
 
         public DesCipher(string key)
         {
-            this.key = key;
+            if (key.Length == 8)
+            {
+                var bytes = Encoding.UTF8.GetBytes(key);
+                var hexKey = Convert.ToHexString(bytes).ToLower();
+                this.key = hexKey;
+            }
+            else
+            {
+                this.key = key;
+            }
         }
 
         //  Permute input hexadecimal according to specified sequence
@@ -97,6 +107,12 @@ namespace SymmetricCiphers.DesCipher
 
         public string Encrypt(string input)
         {
+            if (input.Length == 8)
+            {
+                var bytes = Encoding.UTF8.GetBytes(input);
+                input = Convert.ToHexString(bytes).ToLower();
+            }
+
             //  get 16 keys
             var keys = GetKeys(key);
 
@@ -119,6 +135,12 @@ namespace SymmetricCiphers.DesCipher
 
         public string Decrypt(string input)
         {
+            if (input.Length == 8)
+            {
+                var bytes = Encoding.UTF8.GetBytes(input);
+                input = Convert.ToHexString(bytes).ToLower();
+            }
+
             //  get 16 keys
             var keys = GetKeys(key);
 
@@ -134,7 +156,12 @@ namespace SymmetricCiphers.DesCipher
             //  32-bit swap
             input = input.Substring(8, 8) + input.Substring(0, 8);
             input = Permute(Ip1, input);
-            return input;
+
+            var message = Enumerable.Range(0, input.Length)
+                .Where(x => x % 2 == 0)
+                .Select(x => Convert.ToByte(input.Substring(x, 2), 16))
+                .ToArray();
+            return Encoding.UTF8.GetString(message);
         }
     }
 }

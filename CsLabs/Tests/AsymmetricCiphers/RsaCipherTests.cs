@@ -5,12 +5,12 @@ using NUnit.Framework;
 namespace Tests.AsymmetricCiphers;
 
 [TestFixture]
-public class RsaTests
+public class RsaCipherTests
 {
     [Test]
     public void EncryptThenDecryptShouldReturnCorrectMessage()
     {
-        var cipher = new Rsa(547, 659);
+        var cipher = new RsaCipher(547, 659);
         var message = "secret";
 
         var encryptedMsg = cipher.Encrypt(message);

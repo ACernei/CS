@@ -2,13 +2,13 @@ using System.Numerics;
 
 namespace AsymmetricCiphers;
 
-public class Rsa
+public class RsaCipher
 {
     private readonly BigInteger publicKey;
     private readonly BigInteger privateKey;
     private readonly BigInteger n;
 
-    public Rsa(BigInteger p, BigInteger q)
+    public RsaCipher(BigInteger p, BigInteger q)
     {
         (this.publicKey, this.privateKey, this.n) = GenerateKeyPair(p, q);
     }
@@ -28,23 +28,25 @@ public class Rsa
         return (e, d, n);
     }
 
-    public List<BigInteger> Encrypt(string message)
+    public string Encrypt(string message)
     {
-        var encryptedMessage = new List<BigInteger>();
+        var encryptedMessage = "";
         foreach (var letter in message)
         {
             var asciiValue = (int)letter;
             var encryptedLetter = (BigInteger)Math.Pow(asciiValue, (double)this.publicKey) % this.n;
-            encryptedMessage.Add(encryptedLetter);
+            encryptedMessage += encryptedLetter + " ";
         }
 
-        return encryptedMessage;
+        return encryptedMessage.Trim();
     }
 
-    public string Decrypt(List<BigInteger> encryptedMessage)
+    public string Decrypt(string encryptedMessage)
     {
+        var bigIntegers = encryptedMessage.Split(' ').ToList().Select(BigInteger.Parse).ToList();
+
         var decryptedMessage = new List<char>();
-        foreach (var encryptedLetter in encryptedMessage)
+        foreach (var encryptedLetter in bigIntegers)
         {
             var asciiValue = BigInteger.Pow(encryptedLetter, (int)this.privateKey) % this.n;
             var decryptedLetter = (char)asciiValue;

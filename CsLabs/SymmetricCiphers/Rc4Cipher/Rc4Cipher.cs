@@ -1,16 +1,18 @@
+using System.Text;
+
 namespace SymmetricCiphers.Rc4Cipher;
 
 public class Rc4Cipher
 
 {
-    private readonly List<byte> key;
+    private readonly string key;
 
-    public Rc4Cipher(List<byte> key)
+    public Rc4Cipher(string key)
     {
         this.key = key;
     }
 
-    private List<byte> Process(List<byte> message)
+    private string Process(List<byte> message)
     {
         var s = new int[256];
         for (var _ = 0; _ < 256; _++)
@@ -23,7 +25,7 @@ public class Rc4Cipher
         //  Repeat key for as many times as necessary to fill T
         for (var _ = 0; _ < 256; _++)
         {
-            t[_] = key[_ % key.Count];
+            t[_] = key[_ % key.Length];
         }
 
         //  Produce the initial permutation
@@ -38,7 +40,7 @@ public class Rc4Cipher
 
         //  Pseudo random generation algorithm
 
-        var result = new List<byte>();
+        var result = "";
         var x = 0;
         var y = 0;
 
@@ -53,19 +55,22 @@ public class Rc4Cipher
 
             var k = s[(s[x] + s[y]) % 256];
 
-            result.Add(Convert.ToByte(number ^ k));
+            result += Convert.ToByte(number ^ k) + " ";
         }
 
-        return result;
+        return result.Trim();
     }
 
-    public List<byte> Encrypt(List<byte> message)
+    public string Encrypt(string message)
     {
-        return Process(message);
+        var bytes = Encoding.ASCII.GetBytes(message).ToList();
+        return Process(bytes);
     }
 
-    public List<byte> Decrypt(List<byte> message)
+    public string Decrypt(string message)
     {
-        return Encrypt(message);
+        var bytes = message.Split(' ').ToList().Select(byte.Parse).ToList();
+        var bytesResult = Process(bytes).Split(' ').ToList().Select(byte.Parse).ToList();
+        return Encoding.UTF8.GetString(bytesResult.ToArray(), 0, bytesResult.Count);
     }
 }
