@@ -1,6 +1,7 @@
 using CsApp.Data;
 using CsApp.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace CsApp;
 
@@ -10,23 +11,20 @@ public static class RolesData
 
     public static async Task SeedRoles(IServiceProvider serviceProvider)
     {
-        using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+        using var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope();
+
+        var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        if ((await dbContext.Database.GetPendingMigrationsAsync()).Any())
+            await dbContext.Database.MigrateAsync();
+
+        if (dbContext.UserRoles.Any())
+            return;
+
+        var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        foreach (var role in Roles)
         {
-            var dbContext = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
-
-            if (!dbContext.UserRoles.Any())
-            {
-                var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-                foreach (var role in Roles)
-                {
-                    if (!await roleManager.RoleExistsAsync(role))
-                    {
-                        await roleManager.CreateAsync(new IdentityRole(role));
-                    }
-                }
-            }
-
+            if (!await roleManager.RoleExistsAsync(role))
+                await roleManager.CreateAsync(new IdentityRole(role));
         }
     }
 }

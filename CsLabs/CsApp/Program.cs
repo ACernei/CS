@@ -1,3 +1,4 @@
+using CsApp;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CsApp.Data;
@@ -45,6 +46,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+RolesData.SeedRoles(app.Services).Wait();
 
 app.MapRazorPages();
 
